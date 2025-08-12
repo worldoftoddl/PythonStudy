@@ -89,3 +89,71 @@ print(f"fib 35를 구하기 위한 계산 횟수는 {counter}회 입니다.")
 ## 메모화 이전 계산횟수 : 18454929
 ## 메모화 이후 계산횟수 : 67회
 
+
+
+
+## 2025년 8월 12일 화이팅입니다!!
+
+#리스트 평탄화 재귀함수
+def flatten(data):
+    output = []
+    for i in data:
+        if type(i) == list:
+            output += i
+        else:
+            output.append(i)
+    return output
+
+example = [[1,2,3],[4,5],6,7,[8,9,0]]
+print(flatten(example))
+
+example2 = [[1,2,3],[4,5],6,7,[8,[9,0]]]
+print(flatten(example2))
+
+
+def flatten2(data):
+    output = []
+    for i in data:
+        if type(i) == list:
+            output += flatten(i)
+        else:
+            output.append(i)
+    return output
+
+example2 = [[1,2,3],[4,5],6,7,[8,[9,0]]]
+print(flatten2(example2))
+
+example3 = [[1,[2,3]],[4,5],6,[7,[8,[9,0]]]]
+print(flatten2(example3))
+# 결국 1차원에서 2차원 평탄화가 된 부분이다.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+##예제
+#최대 10명이 앉을 수 있는 테이블과 100명의 사람이 있다고 할 때, 100명의 사람들이 나눠 앉을 수 있는 경우의 수를 구하는 프로그램을 작성하시오.
+
+min_share = 2
+max_share = 10
+people = 100
+memo = {}
+
+def prob(remain, sit):
+    key = (remain, sit)
+    # 종료 조건
+    if key in memo:
+        return memo[key]
+    if remain < 0:
+        return 0    # 무효이므로 0을 반환
+    if remain == 0: 
+        return 1    # 유효하므로 1을 반환
+    #재귀 처리
+    count = 0
+    for i in range(sit, max_share + 1):
+        count += prob(remain -i, i)
+    # 메모화 처리
+    memo[key] = count
+    # 종료
+    return count
+
+print(prob(people, min_share))
+
+## 정확히 이해하지 못한 개념이므로 다시 와서 풀어봐야 함
+
