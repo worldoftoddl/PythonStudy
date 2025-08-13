@@ -157,3 +157,100 @@ print(prob(people, min_share))
 
 ## 정확히 이해하지 못한 개념이므로 다시 와서 풀어봐야 함
 
+
+
+## 2025년 8월 13일 화이팅입니다!!
+
+#튜플에 관하여
+tuple_a = (10, 20, 30, 40)
+print(type(tuple_a))
+print(tuple_a[0:2])
+
+tuple_b = 10, 20, 30, 40    ## 이런 방식으로도 튜플을 선언할 수 있다.
+print(type(tuple_b))
+print(tuple_b[0:2])
+
+x, y, z = 10, 20, 30    ## 이런 방식으로 생성되는 자료 또한 튜플이다.
+
+print(x,y)
+x, y = y, x
+print(x,y)  ## 변수 값 교환이 이렇게 편리하게 이루어질 수 있다.
+
+## 또한 튜플은 함수에서 값 반환에도 이용된다.
+def x():
+    return 10, 20
+print(x())
+print(type(x()))    # <class 'tuple'>
+
+# 이전에 이용한 enumerate()함수도 튜플을 반환하는 형태의 함수이다.
+for i,j in enumerate([1,2,3,4,5,6,7]):
+    print(f"{i}번째 요소는 {j}입니다")
+    print(i,j)
+
+
+## callback_function : 매개변수로 함수를 대입하는 방식
+def tentimes(func, n):
+    for i in range(n):
+        func()
+
+def sayhello():
+    print("Hello World!")
+
+print(tentimes(sayhello, 10))
+
+
+## callback_function의 대표적 예시 - map()과 filter()
+
+# map(함수, 리스트) - map의 매개변수에 int가 callback_function으로 기능함
+a,b = map(int, input().split())     # input()을 split()하여 만든 문자열 리스트에 int()함수를 적용함
+print(a,b)
+
+def square(x, y=2):
+    return x ** y
+
+result_a = list(map(square, [1,2,3,4,5]))       ## 중요!! 제너레이터이므로 list()함수로 묶어줘야함
+print(result_a)                                 ## 여기서 square의 매개변수를 전달하고 싶다?? -> 이따 배울 lambda를 쓰는거임!!
+
+# filter(함수, 리스트) -> 리스트 컴프리헨션에 비해 메모리 소모가 적고, 함수 재활용이 가능하다
+def under_3(x):
+    return x<3
+
+abc = list(filter(under_3, [1,2,3,4,5,6,7]))        ## 중요!! 제너레이터이므로 list()함수로 묶어줘야함
+print(abc)
+
+
+
+### lambda 매개변수 : return 값 - def와 return을 작성하지 않고 간편하게 선언하는 함수 (코드 가독성 개선)
+
+def square(x, y=2):
+    return x ** y
+
+result_a = list(map(lambda x: square(x, y=3), [1,2,3,4,5]))       ## lambda로 특정 매개변수를 전달할 수 있음
+print(result_a) 
+
+
+
+def under_3(x):
+    return x<3
+
+abc = list(filter(lambda x: x<3, [1,2,3,4,5,6,7]))                ## 이 경우 under_3를 선언할 필요가 없는 것
+print(abc)
+
+
+
+
+### 파일 관련 함수
+## open('파일 경로', '모드 설정 - write, append, read')
+file = open('test.txt', 'w', encoding='utf-8')      ## encoding='utf-8'은 시스템 의존을 피하기 위함
+
+file.write("Hello World!")
+
+file.close()            ## close() 괄호 까먹었더라~
+
+
+## with : open() ~~~후에 close()를 자동으로 해주는 구문
+with open('test.txt', 'r', encoding='utf-8') as file:
+    content = file.read()               ## 구문이 끝나는 지점에서 자동으로 file.close()
+
+print(content)
+
