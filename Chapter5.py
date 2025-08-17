@@ -297,3 +297,52 @@ with open("info.txt" , "r", encoding='utf-8') as file:
         print()
         
         
+## 2025년 8월 17일 화이팅입니다!!
+
+#예제
+books = [{
+    "제목": "혼자 공부하는 파이썬",
+    "가격": 18000
+}, {
+    "제목": "혼자 공부하는 머신러닝",
+    "가격": 26000
+},{
+    "제목": "혼자 공부하는 SQL",
+    "가격": 15000
+},{
+    "제목": "혼자 공부하는 자바스크립트",
+    "가격": 36000
+}]
+
+# 딕셔너리 내부의 key 메서드를 이용해 최소, 최대 가격의 책을 도출하는 프로그램
+def price(book):
+    return book["가격"]
+
+print("# 가장 저렴한 책")
+print(min(books, key = price))
+
+print("# 가장 비싼 책")
+print(max(books, key = price))
+
+# 람다를 사용하면
+print("# 가장 저렴한 책")
+print(min(books, key = lambda x: x["가격"]))
+
+print("# 가장 비싼 책")
+print(max(books, key = lambda x: x["가격"]))
+
+
+## 예제 2
+numbers = [1,2,3,4,5,6]
+print("::".join(map(str, numbers)))     # join은 문자열을 합쳐주는 기능이기 때문!
+
+
+## 예제 3
+numbers = [i for i in range(1, 11)]
+
+# 홀수만 추출
+print(list(filter(lambda x: x % 2 == 1, numbers)))
+# 짝수만 추출 
+print(list(filter(lambda x: x%2==0, numbers)))
+# 제곱수가 50 미만 추출하기
+print(list(filter(lambda x: x ** 2 < 50, numbers)))
