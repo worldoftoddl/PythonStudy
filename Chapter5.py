@@ -254,3 +254,46 @@ with open('test.txt', 'r', encoding='utf-8') as file:
 
 print(content)
 
+
+
+## 2025년 8월 15일 광복절 화이팅입니다!!
+
+#파일 작성하기
+import random
+korean = list("가나다라마바사아자차카타파하")
+
+with open("info.txt" , "w", encoding='utf-8') as file:
+    for i in range(50):
+        name = random.choice(korean) + random.choice(korean)
+        weight = random.randint(40, 100)
+        height = random.randint(140,200)
+        
+        file.write(f"{name}, {weight}, {height}\n")
+
+
+with open("info.txt" , "r", encoding='utf-8') as file:
+    for line in file:
+        (name, weight, height) = line.strip().split(", ")       ## 원본 파일이 ", "로 구성되었기 때문. 그냥 쉼표를 안쓰고 split() 으로 자르자
+
+        if (not name) or (not weight) or (not height):
+            continue
+
+        bmi = int(weight) / ((int(height) / 100) ** 2)
+        result = ""
+        if bmi >= 25:
+            result = "과체중"
+        elif bmi >= 18.5:
+            result = "정상 체중"
+        else:
+            result = "저체중"
+        
+        print('\n'.join([
+            "이름 : {}",
+            "몸무게 : {}",
+            "키 : {}",
+            "BMI : {}",
+            "결과 : {}"
+            ]).format(name, weight, height, bmi, result))
+        print()
+        
+        
