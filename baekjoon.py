@@ -78,3 +78,34 @@ while True:
         print('right')
     else:
         print('wrong')
+
+
+# 2920 - 음계
+
+a = ''.join(input().split())
+list_a = [
+    '12345678',
+    '23456781',
+    '34567812',
+    '45678123',
+    '56781234',
+    '67812345',
+    '78123456',
+    '81234567'
+]
+list_d = [
+    '87654321',
+    '76543218',
+    '65432187',
+    '54321876',
+    '43218765',
+    '32187654',
+    '21876543',
+    '18765432'
+]
+if a in list_a:
+    print('ascending')
+elif a in list_d:
+    print('descending')
+else:
+    print('mixed')
